@@ -39,3 +39,22 @@ export async function getSingleImage(key,id){
           
       }
 }
+export async function getMoreImage(key,term,page){
+  const get= bent(`${apiURL}`,'GET','json',200);
+  try {
+
+      const response = await get(`/search?query=${term}&client_id=${key}&page=${page}`);
+        
+      return [null,response]
+
+    } catch (error) {
+
+      // const errorMessage = await error.json();
+  
+      // Sentry.captureException(errorMessage)
+      
+      // return[errorMessage,null]
+      return [error,null]
+        
+    }
+}
