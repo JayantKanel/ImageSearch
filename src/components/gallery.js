@@ -8,8 +8,8 @@ function Gallery() {
   const [index, setIndex] = useState(0);
   const [length, setlength] = useState();
   const [temp, setTemp] = useState(0);
-  const [term, setTerm] = useState("Nature");
-  const [term1, setTerm1] = useState("");
+  const [term, setTerm] = useState();
+  const [term1, setTerm1] = useState();
   const [loading, setLoading] = useState(false);
   const imgData = [];
   const key = "W3pl_4jDBKtl67uFMEuboGfVy1mxERENBhGsXP7Pn9U";
@@ -17,7 +17,6 @@ function Gallery() {
   const [data, setData] = useState();
   const [page, setPage] = useState(2);
   const [loadmore, SetLoadMore] = useState(false);
-  let images;
   const { control, handleSubmit, formState } = useForm({
     // defaultValues: { ...initialValues },
     mode: "onChange",
@@ -35,14 +34,17 @@ function Gallery() {
     SetLoadMore(false);
   };
   const onSubmit = async () => {
-    setTerm(term1);
+    if(term1)
+      setTerm(term1);
+    else 
+      setTerm("Random");
   };
   useEffect(() => {
     console.log(location.pathname);
     localStorage.setItem("key", key);
-    if (term === "") {
-      setTerm("Nature");
-    }
+    // if (term === "") {
+    //   setTerm("Nature");
+    // }
     const init = async () => {
       setIndex(0);
       setLoading(true);
@@ -97,7 +99,7 @@ function Gallery() {
                     setTerm1(e.target.value);
                   }}
                 />
-                <button className="btn">
+                <button className="btn" onClick={onSubmit}>
                   <i className="fas fa-search"></i>
                 </button>
               </div>
@@ -106,14 +108,17 @@ function Gallery() {
         </form>
       </div>
       <div>
-        {loading ? (
+          {
+            term?
+        <div>
+        {loading  ? (
           <div className="d-flex justify-content-center">
             <div className="spinner-border text-primary" role="status"></div>
           </div>
         ) : (
           <div>
             {data ? (
-              <div className="container">
+              <div className="container ">
                 <div className="row">
                   {data.map((img) => {
                     const ID = img.id;
@@ -130,20 +135,16 @@ function Gallery() {
                     );
                   })}
                 </div>
-              </div>
-            ) : (
-              <></>
-            )}
             <div>
               {loadmore ? (
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center spinnerload">
                   <div
                     className="spinner-border text-primary"
                     role="status"
                   ></div>
                 </div>
               ) : (
-                <div className="text-center">
+                <div className="text-center load">
                   <button
                     type="button"
                     className="btn btn-primary"
@@ -154,8 +155,17 @@ function Gallery() {
                 </div>
               )}
             </div>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
-        )}
+        )
+       }
+        </div>
+         :
+         <></>
+}
       </div>
     </div>
   );

@@ -49,10 +49,16 @@
   width: 300px;
 }
 .img-div {
-  margin: 25px auto;
-  padding: 50px;
+  margin-top: -20px;
+  margin-bottom: 14px;
+  margin-left: 3px;
+  margin-right: 95px;
+  padding: 14px;
 }
-
+.cont{
+  margin-left: 7%;
+  margin-right: 12%;;
+}
 img {
   filter: gray; /* IE6-9 */
   /* -webkit-filter: grayscale(1); Google Chrome, Safari 6+ & Opera 15+ */
@@ -65,4 +71,10 @@ img {
 img:hover {
   filter: none; /* IE6-9 */
   -webkit-filter: grayscale(0); /* Google Chrome, Safari 6+ & Opera 15+ */
+}
+.load{
+  margin-bottom: 25px;
+}
+.spinnerload{
+  margin-bottom: 25px;
 }
