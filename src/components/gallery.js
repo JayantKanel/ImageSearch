@@ -110,20 +110,20 @@ function Gallery() {
       <div>
           {
             term?
-        <div>
+        <div className="justify-content-center">
         {loading  ? (
           <div className="d-flex justify-content-center">
             <div className="spinner-border text-primary" role="status"></div>
           </div>
         ) : (
-          <div>
+          <div className="justify-content-center">
             {data ? (
-              <div className="container ">
+              <div className="container cont">
                 <div className="row">
                   {data.map((img) => {
                     const ID = img.id;
                     return (
-                      <div className="col-md-3 col-sm-4 col-xs-6 img-div">
+                      <div className="col-md-3 col-sm-4 col-xs-6 img-div justify-content-center">
                         <a href={`${location.pathname}/${ID}`}>
                           <img
                             className="img-responsive img-size"
