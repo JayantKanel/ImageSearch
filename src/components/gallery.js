@@ -38,52 +38,43 @@ function Gallery() {
     else setTerm("Random");
   };
   useEffect(() => {
-    console.log(location.pathname);
     localStorage.setItem("key", key);
-    // if (term === "") {
-    //   setTerm("Nature");
-    // }
+
     const init = async () => {
       setIndex(0);
       setLoading(true);
       const [error, response] = await getSearchImage(key, term);
-      setData(response.photos.results);
+      
+       setData(response.photos.results);
+       console.log(data);
+      
 
-      // setData(temp2)
       setLoading(false);
     };
     init();
   }, [term]);
 
-  // if (!data || loading) {
-  //   return (
-  //     <div className="d-flex justify-content-center">
-  //       <div className="spinner-border text-primary" role="status"></div>
-  //     </div>
-  //   );
-  // }
-
   return (
     <div>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-          <div class="collapse navbar-collapse" id="navbarButtonsExample">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">Dashboard</li>
+      <nav className="navbar navbar-expand-lg navbar-light nav-bar">
+        <div className="container">
+          <div className="collapse navbar-collapse" id="navbarButtonsExample">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">Dashboard</li>
             </ul>
 
-            <div class="d-flex align-items-center">
-              <button type="button" class="btn btn-link px-3 me-2">
+            <div className="d-flex align-items-center">
+              <button type="button" className="btn btn-link px-3 me-2">
                 Login
               </button>
-              <button type="button" class="btn btn-primary me-3">
+              <button type="button" className="btn btn-primary me-3">
                 Sign up for free
               </button>
             </div>
           </div>
         </div>
       </nav>
-      <div className="business_form">
+      {/* <div className="business_form">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="container h-100">
             <div className="d-flex justify-content-center h-100">
@@ -91,7 +82,7 @@ function Gallery() {
                 <input
                   className="search_input"
                   type="text"
-                  name=""
+                  
                   placeholder="Search..."
                   onChange={(e) => {
                     setTerm1(e.target.value);
@@ -104,6 +95,22 @@ function Gallery() {
             </div>
           </div>
         </form>
+      </div> */}
+      <div className="s130 d-flex justify-content-center h-100">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="inner-form">
+          <div className="input-field first-wrap">
+           
+            <input id="search" type="text" placeholder="What type of image are you looking for?"  onChange={(e) => {
+                  console.log(e.target.value);
+                    setTerm1(e.target.value);
+                  }}/>
+          </div>
+          <div className="input-field second-wrap">
+            <button className="btn-search" type="button" onClick={onSubmit}>SEARCH</button>
+          </div>
+        </div>
+      </form>
       </div>
       <div>
         {term ? (
@@ -117,7 +124,7 @@ function Gallery() {
               </div>
             ) : (
               <div className="justify-content-center">
-                {data ? (
+                {data.length!==0 ? (
                   <div className="container cont">
                     <div className="row">
                       {data.map((img) => {
@@ -157,7 +164,9 @@ function Gallery() {
                     </div>
                   </div>
                 ) : (
-                  <></>
+                  <div className="alert alert-danger">
+  <strong>Oops!</strong> Cannot find what you are looking for.
+</div>
                 )}
               </div>
             )}
