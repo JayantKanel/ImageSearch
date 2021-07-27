@@ -265,13 +265,49 @@ img:hover {
     transition: width 0.4s linear;
   }
 }
-@media screen and (max-width:350px) and (min-width:0px){
+@media screen and (max-width:350px) and (min-width:220px){
   .search_input {
     color: black;
     border: 0;
     outline: 0;
     background: none;
     width: 125px;
+    caret-color: transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+  }
+}
+@media screen and (max-width:220px) and (min-width:186px){
+  .search_input {
+    color: black;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 100px;
+    caret-color: transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+  }
+}
+@media screen and (max-width:186px) and (min-width:0px){
+  .search_input {
+    color: black;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 60px;
+    caret-color: transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+  }
+}
+@media screen and (min-width:1450px){
+  .search_input {
+    color: black;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 800px;
     caret-color: transparent;
     line-height: 40px;
     transition: width 0.4s linear;
