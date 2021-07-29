@@ -1,5 +1,4 @@
 import bent from 'bent';
-// import * as Sentry from "@sentry/react";
 const apiURL="https://api.unsplash.com"
 export async function getSearchImage(key,term){
     const get= bent(`${apiURL}`,'GET','json',200);
@@ -11,11 +10,7 @@ export async function getSearchImage(key,term){
   
       } catch (error) {
   
-        // const errorMessage = await error.json();
-    
-        // Sentry.captureException(errorMessage)
-        
-        // return[errorMessage,null]
+       
         return [error,null]
           
       }
@@ -30,11 +25,7 @@ export async function getSingleImage(key,id){
   
       } catch (error) {
   
-        // const errorMessage = await error.json();
-    
-        // Sentry.captureException(errorMessage)
-        
-        // return[errorMessage,null]
+       
         return [error,null]
           
       }
@@ -49,11 +40,7 @@ export async function getMoreImage(key,term,page){
 
     } catch (error) {
 
-      // const errorMessage = await error.json();
-  
-      // Sentry.captureException(errorMessage)
       
-      // return[errorMessage,null]
       return [error,null]
         
     }
